@@ -13,7 +13,9 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "tsx prisma/seed.ts",
     "check-users": "tsx scripts/check-users.ts",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "db:push:railway": "npx @railway/cli run sh -c 'DATABASE_URL=\"${DATABASE_PUBLIC_URL:-$DATABASE_URL}\" npx prisma db push'",
+    "db:seed:railway": "npx @railway/cli run sh -c 'DATABASE_URL=\"${DATABASE_PUBLIC_URL:-$DATABASE_URL}\" npx prisma db seed'"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.30.0",

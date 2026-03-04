@@ -35,10 +35,11 @@ function LoginForm() {
 
       if (result?.error) {
         setError("Invalid credentials. Please check and try again.");
-      } else if (result?.url) {
-        router.push(result.url);
       } else {
-        router.push(tab === "teacher" ? "/teacher/dashboard" : "/dashboard");
+        // Use relative path so redirect works on any domain (localhost or production)
+        const defaultPath = tab === "teacher" ? "/teacher/dashboard" : "/dashboard";
+        const path = callbackUrl?.startsWith("/") ? callbackUrl : defaultPath;
+        router.push(path);
       }
     } catch {
       setError("An error occurred. Please try again.");
