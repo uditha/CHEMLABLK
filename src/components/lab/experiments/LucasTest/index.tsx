@@ -145,7 +145,7 @@ interface LucasTestProps {
 }
 
 export function LucasTest({ onScoreUpdate }: LucasTestProps) {
-  const { addScore, addObservation, setTotalSteps, setStep, score, completeMode, resetExperiment } =
+  const { addScore, addObservation, setTotalSteps, setStep, score, completeMode, resetExperiment, currentMode } =
     useExperimentStore();
   const { playSuccess } = useSoundEffects();
   const { data: session } = useSession();
@@ -216,16 +216,17 @@ export function LucasTest({ onScoreUpdate }: LucasTestProps) {
     setIsDone(false);
   }
 
-  async function handleComplete() {
-    completeMode();
+  function handleComplete() {
+    completeMode("lucas-test", currentMode);
     setShowCompletion(true);
     if (session?.user?.role === "student") {
-      await saveProgress({
-        experimentSlug: "lucas-test",
-        score,
-        maxScore: 100,
-        timeSpentSeconds: Math.round((Date.now() - startTimeRef.current) / 1000),
-      });
+      const timeSpentSeconds = Math.floor((Date.now() - startTimeRef.current) / 1000);
+      saveProgress({
+        slug: "lucas-test",
+        mode: currentMode,
+        score: Math.min(score, 100),
+        timeSpentSeconds,
+      }).catch(() => {});
     }
   }
 
@@ -664,7 +665,6 @@ export function LucasTest({ onScoreUpdate }: LucasTestProps) {
         persistentNotes={persistentNotes}
         experimentTitle="Lucas Test for Alcohols"
         onComplete={handleComplete}
-        onStepChange={setStep}
       />
       {showCompletion && (
         <CompletionOverlay

@@ -115,7 +115,7 @@ interface ElectrolysisBrineProps {
 }
 
 export function ElectrolysisBrine({ onScoreUpdate }: ElectrolysisBrineProps) {
-  const { addScore, addObservation, setTotalSteps, setStep, score, completeMode, resetExperiment } =
+  const { addScore, addObservation, setTotalSteps, setStep, score, completeMode, resetExperiment, currentMode } =
     useExperimentStore();
   const { playSuccess } = useSoundEffects();
   const { data: session } = useSession();
@@ -186,16 +186,17 @@ export function ElectrolysisBrine({ onScoreUpdate }: ElectrolysisBrineProps) {
     playSuccess();
   }
 
-  async function handleComplete() {
-    completeMode();
+  function handleComplete() {
+    completeMode("electrolysis-brine", currentMode);
     setShowCompletion(true);
     if (session?.user?.role === "student") {
-      await saveProgress({
-        experimentSlug: "electrolysis-brine",
-        score,
-        maxScore: 80,
-        timeSpentSeconds: Math.round((Date.now() - startTimeRef.current) / 1000),
-      });
+      const timeSpentSeconds = Math.floor((Date.now() - startTimeRef.current) / 1000);
+      saveProgress({
+        slug: "electrolysis-brine",
+        mode: currentMode,
+        score: Math.min(score, 100),
+        timeSpentSeconds,
+      }).catch(() => {});
     }
   }
 
@@ -631,7 +632,6 @@ export function ElectrolysisBrine({ onScoreUpdate }: ElectrolysisBrineProps) {
         persistentNotes={persistentNotes}
         experimentTitle="Electrolysis of Brine (Chlor-Alkali Process)"
         onComplete={handleComplete}
-        onStepChange={setStep}
       />
       {showCompletion && (
         <CompletionOverlay

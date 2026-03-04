@@ -152,7 +152,7 @@ interface ElectrolysisCuSO4Props {
 }
 
 export function ElectrolysisCuSO4({ onScoreUpdate }: ElectrolysisCuSO4Props) {
-  const { addScore, addObservation, setTotalSteps, setStep, score, completeMode, resetExperiment } =
+  const { addScore, addObservation, setTotalSteps, setStep, score, completeMode, resetExperiment, currentMode } =
     useExperimentStore();
   const { playSuccess } = useSoundEffects();
   const { data: session } = useSession();
@@ -222,16 +222,17 @@ export function ElectrolysisCuSO4({ onScoreUpdate }: ElectrolysisCuSO4Props) {
     }
   }
 
-  async function handleComplete() {
-    completeMode();
+  function handleComplete() {
+    completeMode("electrolysis-cuso4", currentMode);
     setShowCompletion(true);
     if (session?.user?.role === "student") {
-      await saveProgress({
-        experimentSlug: "electrolysis-cuso4",
-        score,
-        maxScore: 100,
-        timeSpentSeconds: Math.round((Date.now() - startTimeRef.current) / 1000),
-      });
+      const timeSpentSeconds = Math.floor((Date.now() - startTimeRef.current) / 1000);
+      saveProgress({
+        slug: "electrolysis-cuso4",
+        mode: currentMode,
+        score: Math.min(score, 100),
+        timeSpentSeconds,
+      }).catch(() => {});
     }
   }
 
@@ -668,7 +669,6 @@ export function ElectrolysisCuSO4({ onScoreUpdate }: ElectrolysisCuSO4Props) {
         persistentNotes={persistentNotes}
         experimentTitle="Electrolysis of Copper Sulphate Solution"
         onComplete={handleComplete}
-        onStepChange={setStep}
       />
       {showCompletion && (
         <CompletionOverlay

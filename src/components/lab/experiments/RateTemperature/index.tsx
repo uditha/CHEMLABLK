@@ -163,7 +163,7 @@ interface RateTemperatureProps {
 }
 
 export function RateTemperature({ onScoreUpdate }: RateTemperatureProps) {
-  const { addScore, addObservation, setTotalSteps, setStep, score, completeMode, resetExperiment } =
+  const { addScore, addObservation, setTotalSteps, setStep, score, completeMode, resetExperiment, currentMode } =
     useExperimentStore();
   const { playSuccess } = useSoundEffects();
   const { data: session } = useSession();
@@ -240,16 +240,18 @@ export function RateTemperature({ onScoreUpdate }: RateTemperatureProps) {
     setIsDone(false);
   }
 
-  async function handleComplete() {
-    completeMode();
+  function handleComplete() {
+    completeMode("rate-reaction-temperature", currentMode);
     setShowCompletion(true);
     if (session?.user?.role === "student") {
-      await saveProgress({
-        experimentSlug: "rate-temperature",
-        score: score + (results.length >= 5 ? 25 : 0),
-        maxScore: 100,
-        timeSpentSeconds: Math.round((Date.now() - startTimeRef.current) / 1000),
-      });
+      const timeSpentSeconds = Math.floor((Date.now() - startTimeRef.current) / 1000);
+      const finalScore = Math.min(score + (results.length >= 5 ? 25 : 0), 100);
+      saveProgress({
+        slug: "rate-reaction-temperature",
+        mode: currentMode,
+        score: finalScore,
+        timeSpentSeconds,
+      }).catch(() => {});
     }
   }
 
@@ -697,7 +699,6 @@ export function RateTemperature({ onScoreUpdate }: RateTemperatureProps) {
         persistentNotes={persistentNotes}
         experimentTitle="Effect of Temperature on Reaction Rate"
         onComplete={handleComplete}
-        onStepChange={setStep}
       />
       {showCompletion && (
         <CompletionOverlay

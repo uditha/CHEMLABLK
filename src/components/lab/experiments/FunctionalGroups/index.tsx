@@ -210,16 +210,17 @@ export function FunctionalGroups({ onScoreUpdate }: FunctionalGroupsProps) {
     }
   }
 
-  async function handleComplete() {
-    completeMode();
+  function handleComplete() {
+    completeMode("functional-group-identification", currentMode);
     setShowCompletion(true);
     if (session?.user?.role === "student") {
-      await saveProgress({
-        experimentSlug: "functional-groups",
-        score,
-        maxScore: 130,
-        timeSpentSeconds: Math.round((Date.now() - startTimeRef.current) / 1000),
-      });
+      const timeSpentSeconds = Math.floor((Date.now() - startTimeRef.current) / 1000);
+      saveProgress({
+        slug: "functional-group-identification",
+        mode: currentMode,
+        score: Math.min(score, 100),
+        timeSpentSeconds,
+      }).catch(() => {});
     }
   }
 
@@ -709,7 +710,6 @@ export function FunctionalGroups({ onScoreUpdate }: FunctionalGroupsProps) {
         persistentNotes={persistentNotes}
         experimentTitle="Identification of Functional Groups"
         onComplete={handleComplete}
-        onStepChange={setStep}
       />
       {showCompletion && (
         <CompletionOverlay

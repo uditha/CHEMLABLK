@@ -176,7 +176,7 @@ interface RateCatalystProps {
 }
 
 export function RateCatalyst({ onScoreUpdate }: RateCatalystProps) {
-  const { addScore, addObservation, setTotalSteps, setStep, score, completeMode, resetExperiment } =
+  const { addScore, addObservation, setTotalSteps, setStep, score, completeMode, resetExperiment, currentMode } =
     useExperimentStore();
   const { playSuccess } = useSoundEffects();
   const { data: session } = useSession();
@@ -259,16 +259,17 @@ export function RateCatalyst({ onScoreUpdate }: RateCatalystProps) {
     setCurrentVolume(0);
   }
 
-  async function handleComplete() {
-    completeMode();
+  function handleComplete() {
+    completeMode("rate-reaction-catalyst", currentMode);
     setShowCompletion(true);
     if (session?.user?.role === "student") {
-      await saveProgress({
-        experimentSlug: "rate-catalyst",
-        score,
-        maxScore: 80,
-        timeSpentSeconds: Math.round((Date.now() - startTimeRef.current) / 1000),
-      });
+      const timeSpentSeconds = Math.floor((Date.now() - startTimeRef.current) / 1000);
+      saveProgress({
+        slug: "rate-reaction-catalyst",
+        mode: currentMode,
+        score: Math.min(score, 100),
+        timeSpentSeconds,
+      }).catch(() => {});
     }
   }
 
@@ -704,7 +705,6 @@ export function RateCatalyst({ onScoreUpdate }: RateCatalystProps) {
         persistentNotes={persistentNotes}
         experimentTitle="Effect of Catalyst on Reaction Rate"
         onComplete={handleComplete}
-        onStepChange={setStep}
       />
       {showCompletion && (
         <CompletionOverlay
