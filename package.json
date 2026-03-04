@@ -1,0 +1,55 @@
+{
+  "name": "chemlab-lk",
+  "version": "1.0.0",
+  "description": "Virtual Chemistry Laboratory Simulator for Sri Lanka A/L Students",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:seed": "tsx prisma/seed.ts",
+    "check-users": "tsx scripts/check-users.ts",
+    "prisma:studio": "prisma studio"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0",
+    "@auth/prisma-adapter": "^2.7.0",
+    "@prisma/client": "^5.22.0",
+    "ai": "^3.4.0",
+    "bcryptjs": "^2.4.3",
+    "framer-motion": "^11.11.0",
+    "i18next": "^23.16.0",
+    "next": "14.2.15",
+    "next-auth": "^5.0.0-beta.22",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^15.1.0",
+    "recharts": "^2.13.0",
+    "three": "^0.169.0",
+    "zod": "^3.23.8",
+    "zustand": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20.16.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@types/three": "^0.169.0",
+    "autoprefixer": "^10.4.20",
+    "dotenv": "^17.3.1",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.15",
+    "postcss": "^8.4.47",
+    "prisma": "^5.22.0",
+    "tailwindcss": "^3.4.14",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.3"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}

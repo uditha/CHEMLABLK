@@ -1,0 +1,171 @@
+{
+  "appName": "ChemLab LK",
+  "tagline": "Virtual Chemistry Laboratory",
+  "loading": "Loading...",
+  "error": "Something went wrong",
+  "success": "Success",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "save": "Save",
+  "back": "Back",
+  "next": "Next",
+  "complete": "Complete",
+  "score": "Score",
+  "attempts": "Attempts",
+  "timeSpent": "Time Spent",
+  "language": "Language",
+
+  "nav": {
+    "dashboard": "Dashboard",
+    "experiments": "Experiments",
+    "progress": "My Progress",
+    "settings": "Settings",
+    "logout": "Log Out",
+    "aiTutor": "AI Tutor"
+  },
+
+  "auth": {
+    "login": "Log In",
+    "register": "Register",
+    "studentLogin": "Student Login",
+    "teacherLogin": "Teacher Login",
+    "indexNumber": "Index Number",
+    "email": "Email Address",
+    "password": "Password",
+    "name": "Full Name",
+    "school": "School",
+    "loginButton": "Enter the Lab",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "registerHere": "Register here",
+    "loginHere": "Log in here",
+    "invalidCredentials": "Invalid credentials. Please try again.",
+    "indexNumberHint": "Enter your school index number (e.g., 12A001)"
+  },
+
+  "landing": {
+    "hero": "Chemistry Lab in Your Pocket",
+    "heroSub": "All 43 A/L Chemistry practicals — simulated for Sri Lankan students",
+    "experimentsCount": "43 Experiments",
+    "unitCount": "12 Chemistry Units",
+    "langSupport": "English · සිංහල · தமிழ்",
+    "cta": "Start Experimenting",
+    "ctaTeacher": "For Teachers",
+    "features": {
+      "realistic": "Realistic Simulations",
+      "realisticDesc": "Particle-based animations, accurate colour physics, real chemistry",
+      "aiTutor": "AI Chemistry Tutor",
+      "aiTutorDesc": "Powered by Claude — Socratic guidance in your language",
+      "exam": "Exam Practice",
+      "examDesc": "Unknown samples, timed conditions, DoE mark scheme marking",
+      "progress": "Track Progress",
+      "progressDesc": "See your improvement across all 43 experiments"
+    }
+  },
+
+  "lab": {
+    "guided": "Guided",
+    "free": "Free Explore",
+    "exam": "Exam Mode",
+    "mistake": "Mistake Lab",
+    "teacher": "Assignment",
+    "guidedDesc": "Step-by-step with hints",
+    "freeDesc": "Open bench, no scoring",
+    "examDesc": "Unknown sample, 15 min, auto-marked",
+    "mistakeDesc": "Find the error in this broken experiment",
+    "teacherDesc": "Assigned by your teacher",
+    "startExperiment": "Start Experiment",
+    "resetExperiment": "Reset",
+    "submitExam": "Submit Exam",
+    "askTutor": "Ask AI Tutor",
+    "viewQuiz": "Quiz",
+    "metalSelector": "Select Metal",
+    "unknown": "Unknown Sample",
+    "observations": "Observations",
+    "spectrumDisplay": "Emission Spectrum",
+    "electronDiagram": "Electron Transition",
+    "cleanWire": "Clean Wire",
+    "dipInAcid": "Dip in HCl",
+    "burnWire": "Burn in Flame",
+    "pickUpSample": "Pick Up Sample",
+    "holdInFlame": "Hold in Flame",
+    "recordObservation": "Record Observation",
+    "flameColour": "Flame Colour",
+    "metalIdentified": "Metal Identified!",
+    "examSubmitted": "Exam Submitted",
+    "correctAnswer": "Correct!",
+    "wrongAnswer": "Incorrect",
+    "modeSelect": "Select Mode"
+  },
+
+  "quiz": {
+    "title": "Quiz",
+    "question": "Question",
+    "of": "of",
+    "submit": "Submit Answer",
+    "next": "Next Question",
+    "finish": "Finish Quiz",
+    "correct": "Correct!",
+    "incorrect": "Incorrect",
+    "explanation": "Explanation",
+    "yourScore": "Your Score",
+    "retry": "Try Again",
+    "fromPaper": "Past Paper"
+  },
+
+  "tutor": {
+    "title": "AI Chemistry Tutor",
+    "placeholder": "Ask about this experiment...",
+    "send": "Send",
+    "thinking": "Thinking...",
+    "greeting": "Hello! I'm your A/L Chemistry lab assistant. I'm here to guide you through this experiment. What would you like to know?",
+    "examWarning": "I'm in Exam mode — I'll guide you with questions, not answers.",
+    "rateLimit": "You've reached the query limit for this hour. Please try again later."
+  },
+
+  "progress": {
+    "title": "My Progress",
+    "completed": "Completed",
+    "inProgress": "In Progress",
+    "notStarted": "Not Started",
+    "overallScore": "Overall Score",
+    "unit": "Unit",
+    "difficulty": "Difficulty",
+    "priority": "Priority",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard"
+  },
+
+  "dashboard": {
+    "welcome": "Welcome back",
+    "continueWhere": "Continue where you left off",
+    "allExperiments": "All Experiments",
+    "byUnit": "By Unit",
+    "filterAll": "All",
+    "filterP1": "Priority",
+    "filterBuilt": "Available Now",
+    "searchPlaceholder": "Search experiments..."
+  },
+
+  "metals": {
+    "sodium": "Sodium",
+    "potassium": "Potassium",
+    "lithium": "Lithium",
+    "calcium": "Calcium",
+    "strontium": "Strontium",
+    "barium": "Barium",
+    "copper": "Copper",
+    "unknown": "Unknown"
+  },
+
+  "flameColors": {
+    "sodium": "Golden Yellow",
+    "potassium": "Lilac / Violet",
+    "lithium": "Crimson Red",
+    "calcium": "Brick Orange",
+    "strontium": "Crimson / Deep Red",
+    "barium": "Pale Green",
+    "copper": "Blue-Green"
+  }
+}
