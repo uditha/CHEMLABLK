@@ -10,11 +10,13 @@ export interface ProgressPayload {
   mode: ExperimentMode;
   score?: number;
   timeSpentSeconds?: number;
+  testedMetals?: string[];
 }
 
 export interface ProgressRecord {
   slug: string;
   modeCompletions: string[];
+  testedMetals: string[];
   completed: boolean;
   score: number;
   bestScore: number;

@@ -50,8 +50,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        orbitron: ["Space Grotesk", "sans-serif"],
-        rajdhani: ["DM Sans", "sans-serif"],
+        orbitron: ["Orbitron", "sans-serif"],
+        rajdhani: ["Rajdhani", "sans-serif"],
         sinhala: ["Noto Sans Sinhala", "sans-serif"],
         tamil: ["Noto Sans Tamil", "sans-serif"],
       },

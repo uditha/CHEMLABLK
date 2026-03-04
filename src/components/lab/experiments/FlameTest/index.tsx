@@ -11,7 +11,7 @@ import { StepWizard } from "../../StepWizard";
 import { CompletionOverlay } from "../../CompletionOverlay";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
 import { useSession } from "next-auth/react";
-import { saveProgress } from "@/lib/progress";
+import { saveProgress, fetchProgress } from "@/lib/progress";
 import type { StepDefinition } from "../../StepWizard";
 import type { MetalData } from "@/types";
 
@@ -112,6 +112,17 @@ export function FlameTest({ onScoreUpdate }: FlameTestProps) {
     setTotalSteps(4);
   }, [setTotalSteps]);
 
+  // Load persisted testedMetals from DB on mount
+  useEffect(() => {
+    if (session?.user?.role !== "student") return;
+    fetchProgress("flame-test").then((records) => {
+      const record = records[0];
+      if (record?.testedMetals?.length) {
+        setTestedMetals(new Set(record.testedMetals));
+      }
+    }).catch(() => {});
+  }, [session?.user?.role]);
+
   // Set up exam mode
   useEffect(() => {
     if (currentMode === "Exam" && !examMetal) {
@@ -154,7 +165,17 @@ export function FlameTest({ onScoreUpdate }: FlameTestProps) {
       playSuccess();
       addScore(10);
       onScoreUpdate?.(10);
-      setTestedMetals((prev) => new Set(Array.from(prev).concat(displayMetal.id)));
+      setTestedMetals((prev) => {
+        const next = new Set(Array.from(prev).concat(displayMetal.id));
+        if (session?.user?.role === "student") {
+          saveProgress({
+            slug: "flame-test",
+            mode: currentMode,
+            testedMetals: Array.from(next),
+          }).catch(() => {});
+        }
+        return next;
+      });
     }
   }
 
