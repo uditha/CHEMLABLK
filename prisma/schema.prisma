@@ -136,6 +136,7 @@ model ExperimentProgress {
   experimentId      String
   mode              ExperimentMode  @default(Guided)
   modeCompletions   String[]        @default([]) // e.g. ["Guided", "Free", "Exam"]
+  testedMetals      String[]        @default([]) // e.g. ["sodium", "potassium"]
   completed         Boolean         @default(false)
   score             Int             @default(0)
   bestScore         Int             @default(0)

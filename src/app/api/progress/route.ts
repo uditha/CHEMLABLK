@@ -8,6 +8,7 @@ const progressPostSchema = z.object({
   mode: z.enum(["Guided", "Free", "Exam", "Mistake", "Teacher"]),
   score: z.number().min(0).max(100).optional(),
   timeSpentSeconds: z.number().min(0).optional(),
+  testedMetals: z.array(z.string()).optional(),
 });
 
 export async function GET(req: NextRequest) {
@@ -35,6 +36,7 @@ export async function GET(req: NextRequest) {
     const data = progress.map((p) => ({
       slug: p.experiment.slug,
       modeCompletions: p.modeCompletions,
+      testedMetals: p.testedMetals,
       completed: p.completed,
       score: p.score,
       bestScore: p.bestScore,
@@ -68,7 +70,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid data", details: parsed.error.flatten() }, { status: 400 });
     }
 
-    const { slug, mode, score, timeSpentSeconds } = parsed.data;
+    const { slug, mode, score, timeSpentSeconds, testedMetals } = parsed.data;
 
     const experiment = await prisma.experiment.findUnique({ where: { slug } });
     if (!experiment) {
@@ -93,6 +95,12 @@ export async function POST(req: NextRequest) {
     const newScore = score ?? existing?.score ?? 0;
     const newBestScore = Math.max(newScore, existing?.bestScore ?? 0);
 
+    // Merge testedMetals — union of existing + new
+    const existingMetals = existing?.testedMetals ?? [];
+    const newTestedMetals = testedMetals
+      ? Array.from(new Set([...existingMetals, ...testedMetals]))
+      : existingMetals;
+
     const progress = await prisma.experimentProgress.upsert({
       where: {
         studentId_experimentId: {
@@ -103,6 +111,7 @@ export async function POST(req: NextRequest) {
       update: {
         mode,
         modeCompletions: newModes,
+        testedMetals: newTestedMetals,
         completed: newModes.length > 0,
         score: newScore,
         bestScore: newBestScore,
@@ -117,6 +126,7 @@ export async function POST(req: NextRequest) {
         experimentId: experiment.id,
         mode,
         modeCompletions: newModes,
+        testedMetals: newTestedMetals,
         completed: newModes.length > 0,
         score: newScore,
         bestScore: newBestScore,
@@ -129,6 +139,7 @@ export async function POST(req: NextRequest) {
       data: {
         slug: experiment.slug,
         modeCompletions: progress.modeCompletions,
+        testedMetals: progress.testedMetals,
         score: progress.score,
         bestScore: progress.bestScore,
       },
