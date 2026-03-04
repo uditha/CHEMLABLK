@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Noto+Sans+Sinhala:wght@100..900&family=Noto+Sans+Tamil:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Sans+Sinhala:wght@100..900&family=Noto+Sans+Tamil:wght@100..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,15 +6,15 @@
 
 /* ─── CSS Variables ──────────────────────────────────────────────────────── */
 :root {
-  --navy:   #1B2E5E;
-  --teal:   #0D7E6A;
-  --gold:   #C4962A;
-  --bench:  #0A0E1A;
-  --deep:   #050810;
-  --panel:  #0D1220;
-  --border: #1A2540;
-  --text:   #e2e8f0;
-  --text-muted: #94a3b8;
+  --navy:   #1C3260;
+  --teal:   #0F917A;
+  --gold:   #C9921E;
+  --bench:  #091219;
+  --deep:   #060D16;
+  --panel:  #0D1B2A;
+  --border: #1D3248;
+  --text:   #DCE8F5;
+  --text-muted: #8CA3BC;
 }
 
 /* ─── Base Reset ──────────────────────────────────────────────────────────── */
@@ -30,9 +30,9 @@ body {
   overflow-x: hidden;
   background-color: var(--deep);
   color: var(--text);
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -58,9 +58,9 @@ body {
 
 /* ─── Typography ─────────────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 0.05em;
-  line-height: 1.2;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
 }
 
 .font-sinhala {
@@ -85,19 +85,19 @@ a:hover {
 /* ─── Lab Grid Background ────────────────────────────────────────────────── */
 .lab-grid-bg {
   background-image:
-    linear-gradient(rgba(13, 126, 106, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(13, 126, 106, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(15, 145, 122, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 145, 122, 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
   background-position: -1px -1px;
 }
 
 /* ─── Glow Effects ───────────────────────────────────────────────────────── */
 .glow-teal {
-  text-shadow: 0 0 10px rgba(13, 126, 106, 0.8), 0 0 20px rgba(13, 126, 106, 0.4);
+  text-shadow: 0 0 10px rgba(15, 145, 122, 0.8), 0 0 20px rgba(15, 145, 122, 0.4);
 }
 
 .glow-gold {
-  text-shadow: 0 0 10px rgba(196, 150, 42, 0.8), 0 0 20px rgba(196, 150, 42, 0.4);
+  text-shadow: 0 0 10px rgba(201, 146, 30, 0.8), 0 0 20px rgba(201, 146, 30, 0.4);
 }
 
 .glow-flame {
@@ -113,14 +113,14 @@ a:hover {
 
 .lab-panel-hover:hover {
   border-color: var(--teal);
-  box-shadow: 0 0 20px rgba(13, 126, 106, 0.15);
+  box-shadow: 0 0 20px rgba(15, 145, 122, 0.18);
 }
 
 /* ─── Buttons ─────────────────────────────────────────────────────────────── */
 .btn-primary {
   @apply bg-teal hover:bg-teal-light text-white font-semibold py-2 px-6 rounded transition-all duration-200;
-  font-family: 'Rajdhani', sans-serif;
-  letter-spacing: 0.05em;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.02em;
 }
 
 .btn-secondary {
@@ -138,14 +138,14 @@ a:hover {
 /* ─── Form Inputs ─────────────────────────────────────────────────────────── */
 .lab-input {
   @apply w-full bg-bench border border-border rounded px-4 py-2 text-white placeholder-slate-500;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .lab-input:focus {
   border-color: var(--teal);
-  box-shadow: 0 0 0 2px rgba(13, 126, 106, 0.2);
+  box-shadow: 0 0 0 2px rgba(15, 145, 122, 0.2);
 }
 
 /* ─── Badges ──────────────────────────────────────────────────────────────── */
@@ -198,8 +198,8 @@ a:hover {
 .lab-bench {
   background: var(--bench);
   background-image:
-    linear-gradient(rgba(13, 126, 106, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(13, 126, 106, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(15, 145, 122, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 145, 122, 0.03) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -252,7 +252,7 @@ a:hover {
   background: linear-gradient(
     90deg,
     var(--panel) 25%,
-    rgba(13, 126, 106, 0.1) 50%,
+    rgba(15, 145, 122, 0.1) 50%,
     var(--panel) 75%
   );
   background-size: 200% 100%;

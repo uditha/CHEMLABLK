@@ -54,7 +54,7 @@ function ExperimentCardContent({
   return (
     <>
       <div className="flex items-start justify-between gap-2">
-        <span className="text-slate-500 font-orbitron text-xs">
+        <span className="text-slate-500 font-orbitron text-sm">
           U{String(exp.unit).padStart(2, "0")}
         </span>
         <div className="flex items-center gap-1.5 flex-wrap justify-end">
@@ -68,13 +68,13 @@ function ExperimentCardContent({
         </div>
       </div>
 
-      <h3 className="text-white font-rajdhani font-semibold text-sm leading-tight line-clamp-2">
+      <h3 className="text-white font-rajdhani font-semibold text-base leading-snug line-clamp-2">
         {title}
       </h3>
 
       <div className="flex items-center justify-between mt-auto">
         <span
-          className="text-xs font-rajdhani font-medium"
+          className="text-sm font-rajdhani font-medium"
           style={{ color: DIFFICULTY_COLORS[exp.difficulty] }}
         >
           {exp.difficulty}
@@ -124,10 +124,10 @@ export default function StudentDashboard() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-start justify-between gap-4 mb-4">
             <div>
-              <h1 className="font-orbitron text-xl font-bold text-white mb-1">
+              <h1 className="font-orbitron text-2xl font-bold text-white mb-1">
                 Experiment Dashboard
               </h1>
-              <p className="text-slate-400 text-sm font-rajdhani">
+              <p className="text-slate-400 text-base font-rajdhani">
                 NIE Chemistry {new Date().getFullYear()} · {EXPERIMENTS.length} Practicals
               </p>
             </div>
@@ -137,7 +137,7 @@ export default function StudentDashboard() {
           {/* Progress */}
           <div className="flex items-center gap-4">
             <div className="flex-1 max-w-sm">
-              <div className="flex justify-between text-xs text-slate-400 font-rajdhani mb-1">
+              <div className="flex justify-between text-sm text-slate-400 font-rajdhani mb-1">
                 <span>Overall Progress</span>
                 <span>
                   {completedCount}/{EXPERIMENTS.length} ({progressPercent}%)
@@ -150,7 +150,7 @@ export default function StudentDashboard() {
                 />
               </div>
             </div>
-            <div className="flex gap-4 text-xs text-slate-500 font-rajdhani">
+            <div className="flex gap-4 text-sm text-slate-500 font-rajdhani">
               <span>
                 <span className="text-green-400 font-bold">{EXPERIMENTS.filter(e => e.status === "Built").length}</span> Available
               </span>
@@ -171,14 +171,14 @@ export default function StudentDashboard() {
             placeholder="Search experiments..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="lab-input max-w-xs text-sm"
+            className="lab-input max-w-xs text-base"
           />
 
           {/* Unit filter */}
           <div className="flex items-center gap-1.5 flex-wrap">
             <button
               onClick={() => setActiveUnit("all")}
-              className={`px-3 py-1 rounded text-xs font-rajdhani font-medium transition-colors ${
+              className={`px-3 py-1.5 rounded text-sm font-rajdhani font-medium transition-colors ${
                 activeUnit === "all"
                   ? "bg-teal/20 text-teal border border-teal/30"
                   : "text-slate-400 hover:text-white border border-border hover:border-slate-500"
@@ -190,7 +190,7 @@ export default function StudentDashboard() {
               <button
                 key={unit}
                 onClick={() => setActiveUnit(unit)}
-                className={`px-3 py-1 rounded text-xs font-rajdhani font-medium transition-colors ${
+                className={`px-3 py-1.5 rounded text-sm font-rajdhani font-medium transition-colors ${
                   activeUnit === unit
                     ? "bg-teal/20 text-teal border border-teal/30"
                     : "text-slate-400 hover:text-white border border-border hover:border-slate-500"
@@ -207,7 +207,7 @@ export default function StudentDashboard() {
               <button
                 key={s}
                 onClick={() => setFilterStatus(s)}
-                className={`px-3 py-1 rounded text-xs font-rajdhani transition-colors ${
+                className={`px-3 py-1.5 rounded text-sm font-rajdhani transition-colors ${
                   filterStatus === s
                     ? "bg-navy text-white"
                     : "text-slate-500 hover:text-slate-300"
@@ -220,7 +220,7 @@ export default function StudentDashboard() {
         </div>
 
         {/* Experiment count */}
-        <p className="text-slate-500 text-xs font-rajdhani mb-4">
+        <p className="text-slate-500 text-sm font-rajdhani mb-4">
           Showing {filteredExperiments.length} of {EXPERIMENTS.length} experiments
         </p>
 
@@ -236,14 +236,14 @@ export default function StudentDashboard() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  <h2 className="font-orbitron text-sm font-bold text-slate-300 mb-3 flex items-center gap-3">
+                  <h2 className="font-orbitron text-base font-bold text-slate-300 mb-3 flex items-center gap-3">
                     <span className="text-teal">
                       U{String(unit).padStart(2, "0")}
                     </span>
-                    <span className="text-xs text-slate-500 font-rajdhani font-normal">
+                    <span className="text-sm text-slate-500 font-rajdhani font-normal">
                       {UNIT_NAMES[unit] ?? `Unit ${unit}`}
                     </span>
-                    <span className="text-slate-600 text-xs font-rajdhani font-normal">
+                    <span className="text-slate-600 text-sm font-rajdhani font-normal">
                       ({unitExps.length} experiment{unitExps.length !== 1 ? "s" : ""})
                     </span>
                   </h2>

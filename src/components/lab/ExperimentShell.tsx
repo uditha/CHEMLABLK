@@ -88,7 +88,7 @@ function ExamTimer({
 
   return (
     <div
-      className={`font-orbitron text-sm font-bold tabular-nums ${
+      className={`font-orbitron text-base font-bold tabular-nums ${
         urgent ? "text-red-400 animate-pulse" : "text-teal"
       }`}
     >
@@ -171,18 +171,18 @@ export function ExperimentShell({ experiment }: ExperimentShellProps) {
     <div className="flex flex-col h-[calc(100vh-56px)] bg-deep">
       {/* Progress banner when user has completed modes */}
       {completedModes.length > 0 && (
-        <div className="px-4 py-1.5 bg-teal/10 border-b border-teal/20 flex-shrink-0">
-          <p className="text-xs font-rajdhani text-teal">
+        <div className="px-4 py-2 bg-teal/10 border-b border-teal/20 flex-shrink-0">
+          <p className="text-sm font-rajdhani text-teal">
             ✓ Completed: {completedModes.join(", ")} — Try other modes or redo for practice
           </p>
         </div>
       )}
       {/* ── Top bar ──────────────────────────────────────────────────────── */}
-      <div className="flex items-center gap-2 px-4 py-2 bg-panel border-b border-border flex-shrink-0 min-w-0">
+      <div className="flex items-center gap-2 px-4 py-3 bg-panel border-b border-border flex-shrink-0 min-w-0">
         {/* Back */}
         <Link
           href="/dashboard"
-          className="text-slate-500 hover:text-white transition-colors mr-1 flex-shrink-0"
+          className="text-slate-500 hover:text-white transition-colors mr-1 flex-shrink-0 text-lg"
           title="Back to dashboard"
         >
           ←
@@ -190,11 +190,11 @@ export function ExperimentShell({ experiment }: ExperimentShellProps) {
 
         {/* Title */}
         <div className="flex-1 min-w-0 mr-2">
-          <p className="text-slate-500 font-orbitron text-xs">
+          <p className="text-slate-500 font-orbitron text-sm">
             U{String(experiment.unit).padStart(2, "0")} ·{" "}
             {experiment.difficulty}
           </p>
-          <h1 className="text-sm font-rajdhani font-semibold text-white truncate leading-tight">
+          <h1 className="text-base font-rajdhani font-semibold text-white truncate leading-tight">
             {titleDisplay}
           </h1>
         </div>
@@ -210,7 +210,7 @@ export function ExperimentShell({ experiment }: ExperimentShellProps) {
                 onClick={() => unlocked && handleModeChange(mode)}
                 disabled={!unlocked}
                 className={`
-                  px-2.5 py-1 rounded text-xs font-orbitron tracking-wider transition-colors duration-150
+                  px-3 py-1.5 rounded text-sm font-orbitron tracking-wide transition-colors duration-150
                   ${isActive
                     ? "text-white shadow hover:text-white"
                     : unlocked
@@ -245,17 +245,17 @@ export function ExperimentShell({ experiment }: ExperimentShellProps) {
             <ExamTimer startTime={examStartTime} limitSeconds={examTimeLimit} />
           ) : null}
           <div className="text-right">
-            <div className="text-teal font-orbitron text-sm font-bold leading-none">
+            <div className="text-teal font-orbitron text-base font-bold leading-none">
               {score}
             </div>
-            <div className="text-slate-600 text-xs font-rajdhani">pts</div>
+            <div className="text-slate-600 text-sm font-rajdhani">pts</div>
           </div>
         </div>
 
         {/* Reset */}
         <button
           onClick={resetExperiment}
-          className="text-slate-500 hover:text-red-400 text-xs font-rajdhani border border-border hover:border-red-800 rounded px-2 py-1 transition-colors flex-shrink-0"
+          className="text-slate-500 hover:text-red-400 text-sm font-rajdhani border border-border hover:border-red-800 rounded px-3 py-1.5 transition-colors flex-shrink-0"
           title="Reset experiment"
         >
           ↺ Reset
