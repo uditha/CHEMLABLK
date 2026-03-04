@@ -72,14 +72,14 @@ function StepQuizCard({
       className="bg-navy/50 border border-teal/30 rounded-lg p-3 space-y-2.5"
     >
       <p className="text-xs font-orbitron text-gold tracking-wider">QUICK CHECK</p>
-      <p className="text-xs font-rajdhani text-white leading-relaxed">{quiz.question}</p>
+      <p className="text-sm font-rajdhani text-white leading-relaxed">{quiz.question}</p>
       <div className="space-y-1">
         {quiz.options.map((opt, i) => (
           <button
             key={i}
             onClick={() => !submitted && setSelected(i)}
             disabled={submitted}
-            className={`w-full text-left px-2.5 py-1.5 rounded text-xs font-rajdhani border transition-all ${
+            className={`w-full text-left px-2.5 py-1.5 rounded text-sm font-rajdhani border transition-all ${
               submitted && i === quiz.correctIndex
                 ? "border-green-500/60 bg-green-900/20 text-green-300"
                 : submitted && i === selected && !isCorrect
@@ -101,7 +101,7 @@ function StepQuizCard({
             onComplete(selected === quiz.correctIndex);
           }}
           disabled={selected === null}
-          className="w-full py-1.5 rounded text-xs font-rajdhani font-bold bg-teal hover:bg-teal-light disabled:opacity-40 text-white transition-all"
+          className="w-full py-1.5 rounded text-sm font-rajdhani font-bold bg-teal hover:bg-teal-light disabled:opacity-40 text-white transition-all"
         >
           CHECK
         </button>
@@ -109,7 +109,7 @@ function StepQuizCard({
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className={`text-xs font-rajdhani p-2 rounded ${
+          className={`text-sm font-rajdhani p-2 rounded ${
             isCorrect ? "bg-green-900/20 text-green-300" : "bg-amber-900/20 text-amber-300"
           }`}
         >
@@ -203,14 +203,14 @@ function InstructionsPanel({
                   {/* Step title */}
                   <div className="flex-1 min-w-0">
                     <p
-                      className={`text-xs font-rajdhani font-semibold leading-tight ${
+                      className={`text-sm font-rajdhani font-semibold leading-tight ${
                         isCurrent ? "text-white" : isCompleted ? "text-teal" : "text-slate-500"
                       }`}
                     >
                       {step.title}
                     </p>
                     {isCurrent && step.subtitle && (
-                      <p className="text-slate-400 text-xs font-rajdhani mt-1 leading-relaxed">
+                      <p className="text-slate-400 text-sm font-rajdhani mt-1 leading-relaxed">
                         {step.subtitle}
                       </p>
                     )}
@@ -245,7 +245,7 @@ function InstructionsPanel({
                           </p>
                           <ol className="space-y-1">
                             {step.instructions.procedure.map((item, idx) => (
-                              <li key={idx} className="flex items-start gap-2 text-xs font-rajdhani text-slate-300 leading-relaxed">
+                              <li key={idx} className="flex items-start gap-2 text-sm font-rajdhani text-slate-300 leading-relaxed">
                                 <span className="text-teal font-bold flex-shrink-0 mt-0.5">{idx + 1}.</span>
                                 <span>{item}</span>
                               </li>
@@ -262,7 +262,7 @@ function InstructionsPanel({
                           </p>
                           <ul className="space-y-1">
                             {step.instructions.safetyNotes.map((note, idx) => (
-                              <li key={idx} className="flex items-start gap-2 text-xs font-rajdhani text-amber-200/80 leading-relaxed">
+                              <li key={idx} className="flex items-start gap-2 text-sm font-rajdhani text-amber-200/80 leading-relaxed">
                                 <span className="flex-shrink-0 mt-0.5">⚠</span>
                                 <span>{note}</span>
                               </li>
@@ -279,7 +279,7 @@ function InstructionsPanel({
                           </p>
                           <ul className="space-y-1">
                             {step.instructions.expectedObservations.map((obs, idx) => (
-                              <li key={idx} className="flex items-start gap-2 text-xs font-rajdhani text-slate-400 leading-relaxed">
+                              <li key={idx} className="flex items-start gap-2 text-sm font-rajdhani text-slate-400 leading-relaxed">
                                 <span className="text-teal flex-shrink-0 mt-0.5">→</span>
                                 <span>{obs}</span>
                               </li>
@@ -296,7 +296,7 @@ function InstructionsPanel({
                           </p>
                           <ul className="space-y-1">
                             {step.instructions.tips.map((tip, idx) => (
-                              <li key={idx} className="flex items-start gap-2 text-xs font-rajdhani text-slate-300 leading-relaxed">
+                              <li key={idx} className="flex items-start gap-2 text-sm font-rajdhani text-slate-300 leading-relaxed">
                                 <span className="text-gold flex-shrink-0 mt-0.5">*</span>
                                 <span>{tip}</span>
                               </li>
@@ -326,7 +326,7 @@ function InstructionsPanel({
           onClick={onNext}
           disabled={!canProceed}
           className={`
-            w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-rajdhani font-bold tracking-wider transition-all
+            w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-rajdhani font-bold tracking-wider transition-all
             ${canProceed
               ? "bg-teal hover:bg-teal-light text-white"
               : "bg-slate-800/60 text-slate-600 cursor-not-allowed"
@@ -377,7 +377,7 @@ function ResourcesPanel({
             key={tab.id}
             onClick={() => onTabChange(tab.id)}
             className={`
-              flex-1 flex items-center justify-center gap-1.5 px-2 py-2.5 text-xs font-rajdhani font-semibold tracking-wide transition-all border-b-2
+              flex-1 flex items-center justify-center gap-1.5 px-2 py-2.5 text-sm font-rajdhani font-semibold tracking-wide transition-all border-b-2
               ${activeTab === tab.id
                 ? "text-teal border-teal bg-teal/5"
                 : "text-slate-500 border-transparent hover:text-slate-300 hover:bg-panel/50"
@@ -403,7 +403,7 @@ function ResourcesPanel({
               className="h-full overflow-y-auto px-3 py-3"
             >
               {persistentNotes || (
-                <p className="text-slate-600 text-xs font-rajdhani">
+                <p className="text-slate-600 text-sm font-rajdhani">
                   No observations recorded yet.
                 </p>
               )}
@@ -420,7 +420,7 @@ function ResourcesPanel({
               className="h-full overflow-y-auto px-3 py-3 space-y-3"
             >
               {stepTheory ?? stepNotes ?? (
-                <p className="text-slate-600 text-xs font-rajdhani">
+                <p className="text-slate-600 text-sm font-rajdhani">
                   No theory notes for this step.
                 </p>
               )}
@@ -600,7 +600,7 @@ export function StepWizard({ steps, persistentNotes, experimentTitle, onComplete
             onClick={handleNext}
             disabled={!canGoNext}
             className={`
-              w-full py-2.5 rounded-lg text-xs font-rajdhani font-bold tracking-wider transition-all
+              w-full py-2.5 rounded-lg text-sm font-rajdhani font-bold tracking-wider transition-all
               ${canGoNext
                 ? "bg-teal hover:bg-teal-light text-white"
                 : "bg-slate-800/60 text-slate-600 cursor-not-allowed"
