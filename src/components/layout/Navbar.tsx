@@ -16,6 +16,7 @@ export function Navbar({ userName, userRole }: NavbarProps) {
   const navItems = userRole === "teacher"
     ? [
         { href: "/teacher/dashboard", label: "Dashboard" },
+        { href: "/teacher/classes", label: "Classes" },
       ]
     : [
         { href: "/dashboard", label: "Dashboard" },

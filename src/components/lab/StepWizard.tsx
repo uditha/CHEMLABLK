@@ -71,7 +71,10 @@ function StepQuizCard({
       animate={{ opacity: 1, y: 0 }}
       className="bg-navy/50 border border-teal/30 rounded-lg p-3 space-y-2.5"
     >
-      <p className="text-xs font-orbitron text-gold tracking-wider">QUICK CHECK</p>
+      <div className="flex items-center justify-between">
+        <p className="text-xs font-orbitron text-gold tracking-wider">QUICK CHECK</p>
+        <p className="text-xs font-rajdhani text-slate-500 italic">optional</p>
+      </div>
       <p className="text-sm font-rajdhani text-white leading-relaxed">{quiz.question}</p>
       <div className="space-y-1">
         {quiz.options.map((opt, i) => (
@@ -466,11 +469,10 @@ export function StepWizard({ steps, persistentNotes, experimentTitle, onComplete
   const activeStep = Math.min(currentStep, steps.length - 1);
   const stepDef = steps[activeStep];
 
-  // Quiz gating: in Guided mode, must complete quiz before NEXT
+  // Quiz: shown in Guided mode but NOT gating — students can proceed without answering
   const hasQuiz = isGuidedMode && !!stepDef?.quiz;
-  const quizDone = !hasQuiz || quizCompleted[stepDef?.id ?? ""];
   const stepActionDone = isFreeMode || stepDef?.canProceed !== false;
-  const canGoNext = stepActionDone && quizDone;
+  const canGoNext = stepActionDone;
   const isLastStep = activeStep === steps.length - 1;
 
   const handleQuizComplete = useCallback(
@@ -522,8 +524,9 @@ export function StepWizard({ steps, persistentNotes, experimentTitle, onComplete
             canProceed={canGoNext}
             onNext={handleNext}
             quizCard={
-              hasQuiz && stepActionDone && !quizCompleted[stepDef?.id ?? ""] ? (
+              hasQuiz && stepActionDone ? (
                 <StepQuizCard
+                  key={stepDef!.id}
                   quiz={stepDef!.quiz!}
                   onComplete={(correct) => handleQuizComplete(stepDef!.id, correct)}
                 />
