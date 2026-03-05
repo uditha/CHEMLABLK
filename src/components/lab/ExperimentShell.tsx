@@ -11,6 +11,9 @@ const EXPERIMENT_MAP: Record<
   string,
   React.LazyExoticComponent<React.ComponentType<{ onScoreUpdate?: (pts: number) => void }>>
 > = {
+  "cathode-rays": lazy(() =>
+    import("./experiments/CathodeRays").then((m) => ({ default: m.CathodeRays }))
+  ),
   "flame-test": lazy(() =>
     import("./experiments/FlameTest").then((m) => ({ default: m.FlameTest }))
   ),
