@@ -15,7 +15,7 @@ export const EXPERIMENTS: ExperimentData[] = [
       "Investigate the properties of cathode rays using a discharge tube. Observe deflection by electric and magnetic fields.",
     difficulty: "Medium",
     priority: "P2",
-    status: "Planned",
+    status: "Built",
   },
   {
     id: "exp-02",
